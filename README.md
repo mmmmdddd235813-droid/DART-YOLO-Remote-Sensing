@@ -34,7 +34,7 @@ cd DART-YOLO-Remote-Sensing
 # Install dependencies
 pip install -r requirements.txt
 
-2. Dataset Preparation
+## Dataset Preparation
 The datasets used in this paper are publicly available. Please download them from their official repositories:
 
 VisDrone2019 Dataset:
@@ -61,12 +61,12 @@ Directory Structure: Please/datasets
         /images
         /labels
         
-3. Training
-4. 
-To train the DART-YOLO model on your dataset, run the main training script:
-python train_0928.py
+## Training
 
-🔗 Citation
+To train the DART-YOLO model on your dataset, run the main training script:
+python train.py
+
+##🔗 Citation
 If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:
 
 @article{DART_YOLO_2025,
