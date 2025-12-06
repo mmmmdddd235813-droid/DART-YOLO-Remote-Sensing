@@ -36,3 +36,19 @@ cd DART-YOLO-Remote-Sensing
 
 # Install dependencies
 pip install -r requirements.txt
+
+### 2. Dataset Preparation
+The datasets used in this paper are publicly available. You can download them from their official repositories:
+
+* **VisDrone2019 Dataset:**
+  * Official GitHub: [https://github.com/VisDrone/VisDrone-Dataset](https://github.com/VisDrone/VisDrone-Dataset)
+  * Description: A large-scale benchmark for object detection in drone-captured images.
+
+* **DIOR Dataset:**
+  * Official GitHub: [https://github.com/gcheng-nwpu/DIOR-Dataset](https://github.com/gcheng-nwpu/DIOR-Dataset)
+  * Description: A large-scale benchmark dataset for object detection in optical remote sensing images.
+
+* **UAV-Tank Dataset:**
+  * *(Note: If this is a custom dataset or less common one, please insert the specific download link here, e.g., Google Drive or Baidu Netdisk. If not publicly hosted, you can remove this bullet point.)*
+
+Please organize the dataset structure as follows:
