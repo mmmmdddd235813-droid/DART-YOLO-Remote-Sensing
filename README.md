@@ -26,7 +26,7 @@ The code is organized as follows:
 ### 1. Environment Setup
 The code requires Python 3.8+ and PyTorch. We recommend using a Conda environment.
 
-'''bash
+```bash
 # Clone the repository
 git clone [https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git](https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git)
 cd DART-YOLO-Remote-Sensing
@@ -77,3 +77,4 @@ If you use this code or model in your research, please refer to our manuscript s
   year={2025},  
   note={Under Review}  
 }  
+```
