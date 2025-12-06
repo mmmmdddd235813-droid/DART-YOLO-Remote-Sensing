@@ -67,8 +67,9 @@ Directory Structure: Please/datasets
 ## Training
 
 To train the DART-YOLO model on your dataset, run the main training script:
+```bash
 python train.py
-
+```
 ## 🔗 Citation
 If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:  
 ```bash
