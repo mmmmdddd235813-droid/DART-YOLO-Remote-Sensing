@@ -55,12 +55,12 @@ Note: Please ensure the dataset follows the standard YOLO directory structure.
 
 Directory Structure: Please/datasets
 /datasets
-    /VisDrone
-        /images
-        /labels
-    /DIOR
-        /images
-        /labels
+    /VisDrone  
+        /images  
+        /labels  
+    /DIOR  
+        /images  
+        /labels  
         
 ## Training
 
@@ -68,12 +68,12 @@ To train the DART-YOLO model on your dataset, run the main training script:
 python train.py
 
 ## 🔗 Citation
-If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:
+If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:  
 
-@article{DART_YOLO_2025,
-  title={Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing},
-  author={Dezhi Sun and Qiang Shen and others},
-  journal={The Visual Computer},
-  year={2025},
-  note={Under Review}
-}
+@article{DART_YOLO_2025,  
+  title={Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing},  
+  author={Dezhi Sun and Qiang Shen and others},  
+  journal={The Visual Computer},  
+  year={2025},  
+  note={Under Review}  
+}  
