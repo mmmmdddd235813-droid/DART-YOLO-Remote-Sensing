@@ -54,6 +54,7 @@ UAV-Tank Dataset:
 Note: Please ensure the dataset follows the standard YOLO directory structure.
 
 Directory Structure: Please/datasets
+/datasets
     /VisDrone
         /images
         /labels
@@ -66,7 +67,7 @@ Directory Structure: Please/datasets
 To train the DART-YOLO model on your dataset, run the main training script:
 python train.py
 
-##🔗 Citation
+## 🔗 Citation
 If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:
 
 @article{DART_YOLO_2025,
