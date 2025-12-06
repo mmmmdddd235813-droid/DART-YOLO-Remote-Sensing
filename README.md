@@ -1,10 +1,7 @@
-# DART-YOLO-Remote-Sensing
-Official implementation of "Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing"
-
 # DART-YOLO: Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-This repository contains the official implementation of the paper **"Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing"**, currently submitted to *The Visual Computer*.
+This repository contains the official implementation of the paper **"Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing"**, submitted to *The Visual Computer*.
 
 ## 📖 Abstract
 Small target detection in remote sensing images remains a significant challenge due to variable target scales, complex backgrounds, and dense distributions. To address these issues, we introduce a lightweight and efficient detection model, **DART (Dynamic Rotational Attention)**, based on the YOLO framework. Our model integrates:
@@ -36,19 +33,41 @@ cd DART-YOLO-Remote-Sensing
 
 # Install dependencies
 pip install -r requirements.txt
+2. Dataset Preparation
+The datasets used in this paper are publicly available. Please download them from their official repositories:
 
-### 2. Dataset Preparation
-The datasets used in this paper are publicly available. You can download them from their official repositories:
+VisDrone2019 Dataset:
 
-* **VisDrone2019 Dataset:**
-  * Official GitHub: [https://github.com/VisDrone/VisDrone-Dataset](https://github.com/VisDrone/VisDrone-Dataset)
-  * Description: A large-scale benchmark for object detection in drone-captured images.
+Official GitHub: https://github.com/VisDrone/VisDrone-Dataset
 
-* **DIOR Dataset:**
-  * Official GitHub: [https://github.com/gcheng-nwpu/DIOR-Dataset](https://github.com/gcheng-nwpu/DIOR-Dataset)
-  * Description: A large-scale benchmark dataset for object detection in optical remote sensing images.
+Description: A large-scale benchmark for object detection in drone-captured images.
 
-* **UAV-Tank Dataset:**
-  * *(Note: If this is a custom dataset or less common one, please insert the specific download link here, e.g., Google Drive or Baidu Netdisk. If not publicly hosted, you can remove this bullet point.)*
+DIOR Dataset:
 
-Please organize the dataset structure as follows:
+Official GitHub: https://github.com/gcheng-nwpu/DIOR-Dataset
+
+Description: A large-scale benchmark dataset for object detection in optical remote sensing images.
+
+UAV-Tank Dataset:
+
+Note: Please ensure the dataset follows the standard YOLO directory structure.
+
+Directory Structure: Please/datasets
+    /VisDrone
+        /images
+        /labels
+    /DIOR
+        /images
+        /labels
+3. Training
+To train the DART-YOLO model on your dataset, run the main training script:
+python train_0928.py
+🔗 Citation
+If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:
+@article{DART_YOLO_2025,
+  title={Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing},
+  author={Dezhi Sun and Qiang Shen and others},
+  journal={The Visual Computer},
+  year={2025},
+  note={Under Review}
+}
