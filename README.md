@@ -26,13 +26,14 @@ The code is organized as follows:
 ### 1. Environment Setup
 The code requires Python 3.8+ and PyTorch. We recommend using a Conda environment.
 
-``bash
+bash
 # Clone the repository
 git clone [https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git](https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git)
 cd DART-YOLO-Remote-Sensing
 
 # Install dependencies
 pip install -r requirements.txt
+
 2. Dataset Preparation
 The datasets used in this paper are publicly available. Please download them from their official repositories:
 
@@ -59,11 +60,15 @@ Directory Structure: Please/datasets
     /DIOR
         /images
         /labels
+        
 3. Training
+4. 
 To train the DART-YOLO model on your dataset, run the main training script:
 python train_0928.py
+
 🔗 Citation
 If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:
+
 @article{DART_YOLO_2025,
   title={Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing},
   author={Dezhi Sun and Qiang Shen and others},
