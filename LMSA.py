@@ -1,14 +1,34 @@
-###################### ContextAggregation  ####     START   by  AI&CV  ###############################
-from mmengine.model import BaseModule, constant_init
-
-from ultralytics.nn.modules.block import Bottleneck, C2f, C3k
-
-from mmcv.cnn import ConvModule
-
+"""Local Multi-Scale Attention module for DART-YOLO."""
 import torch
 from torch import nn, Tensor
 from typing import List, Optional
 
+try:
+    from mmengine.model import BaseModule, constant_init
+except ModuleNotFoundError:
+    class BaseModule(nn.Module):
+        def init_weights(self):
+            pass
+
+    def constant_init(module, val, bias=0):
+        nn.init.constant_(module.weight, val)
+        if getattr(module, "bias", None) is not None:
+            nn.init.constant_(module.bias, bias)
+
+from ultralytics.nn.modules.block import Bottleneck, C2f, C3k
+
+try:
+    from mmcv.cnn import ConvModule
+except ModuleNotFoundError:
+    class ConvModule(nn.Sequential):
+        def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, norm_cfg=None, act_cfg=None):
+            layers = [nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=norm_cfg is None)]
+            if norm_cfg is not None:
+                layers.append(nn.BatchNorm2d(out_channels))
+            if act_cfg is not None:
+                act_type = act_cfg.get("type", "ReLU") if isinstance(act_cfg, dict) else "ReLU"
+                layers.append(getattr(nn, act_type, nn.ReLU)())
+            super().__init__(*layers)
 from ultralytics.nn.modules.conv import Conv
 
 __all__ = ['LMSA']

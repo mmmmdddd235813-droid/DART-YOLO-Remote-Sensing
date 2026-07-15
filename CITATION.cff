@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "DART-YOLO: Parameter-Efficient and Accuracy-Oriented Detection for Remote Sensing Targets"
+message: "If you use this repository, please cite the manuscript after publication."
+type: software
+authors:
+  - family-names: Sun
+    given-names: Dezhi
+repository-code: "https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing"
+license: AGPL-3.0-or-later

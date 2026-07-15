@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+*.log
+*.tmp
+runs/
+wandb/
+datasets/
+*.cache
+.env
+*.key
+*.pem

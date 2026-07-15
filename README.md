@@ -1,83 +1,118 @@
-# DART-YOLO: Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing
+# DART-YOLO: Parameter-Efficient and Accuracy-Oriented Detection for Remote Sensing Targets
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-This repository contains the official implementation of the paper **"Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing"**, submitted to *The Visual Computer*.
+This repository contains the reference implementation for DART-YOLO, a parameter-efficient and accuracy-oriented YOLO-based detector for remote sensing object detection. The model is designed for small and densely distributed targets in aerial and remote sensing imagery.
 
-## 📖 Abstract
-Small target detection in remote sensing images remains a significant challenge due to variable target scales, complex backgrounds, and dense distributions. To address these issues, we introduce a lightweight and efficient detection model, **DART (Dynamic Rotational Attention)**, based on the YOLO framework. Our model integrates:
-* **DRFM (Dynamic Rotational Feature Module):** For rotation-adaptive capabilities.
-* **LMSA (Lightweight Multi-Scale Attention):** For contextual information enhancement.
-* **DGAM (Dynamic Global Attention Module):** For incorporating global context and positional awareness.
+The implementation follows the manuscript submitted to *The Visual Computer*. The public repository focuses on transparent model components, reproducible training commands, dataset split documentation, evaluation, ONNX export, and Jetson ONNX Runtime benchmarking.
 
-Extensive experiments on UAV-tank, VisDrone2019, and DIOR datasets demonstrate significant improvements in mAP50 alongside a reduction in model size.
+## Model Components
 
-## 📂 Repository Structure
-The code is organized as follows:
-* `train_0928.py`: The main training script to reproduce the experiments.
-* `DART-YOLO.yaml`: The model configuration file defining the network architecture.
-* `DRFM.py`: Implementation of the Dynamic Rotational Feature Module.
-* `DGAM.py`: Implementation of the Dynamic Global Attention Module.
-* `LMSA.py`: Implementation of the Lightweight Multi-Scale Attention module.
-* `SPD.py`: Space-to-Depth module implementation.
-* `requirements.txt`: List of Python dependencies.
+DART-YOLO is built from four named modules:
 
-## 🚀 Getting Started
+- `CSD.py`: Channel-Split Downsampling module.
+- `DRFM.py`: Dynamic Rotational Feature Module.
+- `LMSA.py`: Lightweight Multi-Scale Attention module.
+- `DGAM.py`: Dynamic Global Attention Module.
 
-### 1. Environment Setup
-The code requires Python 3.8+ and PyTorch. We recommend using a Conda environment.
+The full model configuration is provided in:
 
-```bash
-# Clone the repository
-git clone [https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git](https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git)
-cd DART-YOLO-Remote-Sensing
+- `DART-YOLO.yaml`
+
+`SPD.py` is kept only as a backward-compatible alias for `CSD.py`.
+
+## Repository Structure
+
+```text
+DART-YOLO-Remote-Sensing/
+  DART-YOLO.yaml
+  CSD.py
+  DRFM.py
+  LMSA.py
+  DGAM.py
+  SPD.py
+  train.py
+  evaluate.py
+  export_onnx.py
+  benchmark_jetson_ort.py
+  requirements.txt
+  data/
+    uav_tank.yaml
+    visdrone2019.yaml
+    dior.yaml
+  splits/
+    uav_tank/train.txt
+    uav_tank/val.txt
+    dior/train.txt
+    dior/val.txt
+  tools/
+    convert_to_yolo.py
+    filter_tank_classes.py
+    unify_tank_labels.py
+    remove_duplicates.py
+    check_annotations.py
+  docs/
+    DATASETS.md
+  TRAINING.md
+  EVALUATION.md
+  DEPLOYMENT.md
+  CITATION.cff
 ```
-# Install dependencies
+
+## Installation
+
+Python 3.9, PyTorch 2.1.2 with CUDA 11.8, and Ultralytics 8.3.161 were used for the main experiments.
+
 ```bash
+git clone https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git
+cd DART-YOLO-Remote-Sensing
 pip install -r requirements.txt
 ```
-## Dataset Preparation
-The datasets used in this paper are publicly available. Please download them from their official repositories:
 
-VisDrone2019 Dataset:
+The custom modules are written as regular PyTorch modules. To use `DART-YOLO.yaml` directly with Ultralytics, make sure these modules are registered or copied into the Ultralytics custom module import path used by your training environment.
 
-Official GitHub: https://github.com/VisDrone/VisDrone-Dataset
+## Datasets
 
-Description: A large-scale benchmark for object detection in drone-captured images.
+Three datasets are used:
 
-DIOR Dataset:
+- UAV-Tank: 3,763 images, single class `tank`.
+- VisDrone2019: official train/val splits, with 6,471 train images and 548 val images.
+- DIOR: fixed 80/20 split used in the manuscript, with 18,770 train images and 4,693 val images. This is not an official leaderboard protocol.
 
-Official GitHub: https://github.com/gcheng-nwpu/DIOR-Dataset
+UAV-Tank images are not redistributed in full because some source datasets have license restrictions. The repository provides source information, reconstruction steps, and fixed split files. See [docs/DATASETS.md](docs/DATASETS.md).
 
-Description: A large-scale benchmark dataset for object detection in optical remote sensing images.
-
-UAV-Tank Dataset:
-
-Note: Please ensure the dataset follows the standard YOLO directory structure.
-
-Directory Structure: Please/datasets
-```bash
-/datasets
-    /VisDrone  
-        /images  
-        /labels  
-    /DIOR  
-        /images  
-        /labels  
-```
 ## Training
 
-To train the DART-YOLO model on your dataset, run the main training script:
+Default training command:
+
 ```bash
-python train.py
+python train.py --model DART-YOLO.yaml --data data/uav_tank.yaml --imgsz 640 --epochs 200 --batch 8 --optimizer SGD --seed 0 --pretrained
 ```
-## 🔗 Citation
-If you use this code or model in your research, please refer to our manuscript submitted to The Visual Computer:  
+
+Examples for the three datasets are listed in [TRAINING.md](TRAINING.md).
+
+## Evaluation
+
 ```bash
-@article{DART_YOLO_2025,  
-  title={Dynamic Rotational Attention for Enhanced Small Target Detection in Remote Sensing},  
-  author={Dezhi Sun and Qiang Shen and others},  
-  journal={The Visual Computer},  
-  year={2025},  
-  note={Under Review}  
-}  
+python evaluate.py --weights runs/train/dart_yolo/weights/best.pt --data data/uav_tank.yaml --imgsz 640 --batch 8
 ```
+
+The evaluation script reports Precision, Recall, mAP@0.5, and mAP@0.5:0.95. See [EVALUATION.md](EVALUATION.md).
+
+## ONNX Export and Jetson Benchmarking
+
+Export FP32 ONNX at 640 x 640 with batch size 1:
+
+```bash
+python export_onnx.py --weights runs/train/dart_yolo/weights/best.pt --imgsz 640
+```
+
+Benchmark on Jetson AGX Xavier 32 GB with ONNX Runtime 1.12.1 and CUDAExecutionProvider:
+
+```bash
+python benchmark_jetson_ort.py --onnx best.onnx --warmup 50 --runs 300
+```
+
+See [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## Citation
+
+If this repository is useful for your work, please cite the manuscript once the final bibliographic information is available. A provisional citation file is provided in [CITATION.cff](CITATION.cff).

@@ -1,0 +1,8 @@
+# UAV-Tank single-class dataset.
+path: ../datasets/UAV-Tank
+train: ../../splits/uav_tank/train.txt
+val: ../../splits/uav_tank/val.txt
+test: ../../splits/uav_tank/val.txt
+nc: 1
+names:
+  - tank

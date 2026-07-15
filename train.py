@@ -1,44 +1,57 @@
-import warnings
+"""Train DART-YOLO with the Ultralytics training interface."""
+
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
 from ultralytics import YOLO
-import os  # 导入os库用于处理文件名
 
-# 忽略不必要的警告
-warnings.filterwarnings('ignore')
+from register_modules import register_modules
 
-if __name__ == '__main__':
 
-    model_configs = [
-        'DART-YOLO.yaml',
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Train DART-YOLO.")
+    parser.add_argument("--model", default="DART-YOLO.yaml", help="Model YAML or checkpoint path.")
+    parser.add_argument("--data", default="data/uav_tank.yaml", help="Dataset YAML.")
+    parser.add_argument("--imgsz", type=int, default=640, help="Input image size.")
+    parser.add_argument("--epochs", type=int, default=200, help="Training epochs.")
+    parser.add_argument("--batch", type=int, default=8, help="Batch size.")
+    parser.add_argument("--optimizer", default="SGD", help="Optimizer name.")
+    parser.add_argument("--seed", type=int, default=0, help="Random seed.")
+    parser.add_argument("--pretrained", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--device", default="0", help="CUDA device id or 'cpu'.")
+    parser.add_argument("--workers", type=int, default=0)
+    parser.add_argument("--project", default="runs/train", help="Output project directory.")
+    parser.add_argument("--name", default="dart_yolo", help="Run name.")
+    parser.add_argument("--close-mosaic", type=int, default=0)
+    parser.add_argument("--resume", default=None, help="Optional checkpoint to resume from.")
+    return parser.parse_args()
 
-    ]
 
-    # 2. 使用 for 循环遍历列表，依次训练每个模型
-    for config_file in model_configs:
-        print(f"\n{'=' * 20}")
-        print(f"开始训练模型: {config_file}")
-        print(f"{'=' * 20}\n")
+def main() -> None:
+    args = parse_args()
+    register_modules()
+    model = YOLO(args.resume or args.model)
+    model.train(
+        data=args.data,
+        imgsz=args.imgsz,
+        epochs=args.epochs,
+        batch=args.batch,
+        optimizer=args.optimizer,
+        seed=args.seed,
+        pretrained=args.pretrained,
+        device=args.device,
+        workers=args.workers,
+        project=args.project,
+        name=args.name,
+        close_mosaic=args.close_mosaic,
+        cache=False,
+        single_cls=False,
+        amp=True,
+        resume=bool(args.resume),
+    )
 
-        # 每次循环都初始化一个新的模型
-        model = YOLO(config_file)
 
-        # 从配置文件名生成一个独特的训练名称，例如 'yolo11_WTConv.yaml' -> 'yolo11_WTConv_train'
-        # os.path.splitext(config_file)[0] 会获取文件名（不带.yaml后缀）
-        training_name = f"{os.path.splitext(config_file)[0]}_train"
-
-        # 调用训练方法
-        model.train(
-            data=r"data.yaml",
-            cache=False,
-            imgsz=640,
-            epochs=200,
-            single_cls=False,
-            batch=16,
-            close_mosaic=0,
-            workers=0,
-            device='0',
-            optimizer='SGD',
-            amp=True,
-            project='runs/VIS',
-            name=training_name,  # 关键：为每次训练设置一个唯一的名称
-            # resume='path/to/last.pt', # 如果需要续训，请在这里为每个模型单独处理
-        )
+if __name__ == "__main__":
+    main()

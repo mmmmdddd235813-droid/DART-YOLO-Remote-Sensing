@@ -1,0 +1,29 @@
+# DIOR dataset in YOLO format.
+# The split follows the fixed 80/20 split used in the paper. It is not an
+# official leaderboard protocol.
+path: ../datasets/DIOR
+train: ../../splits/dior/train.txt
+val: ../../splits/dior/val.txt
+test: ../../splits/dior/val.txt
+nc: 20
+names:
+  - airplane
+  - airport
+  - baseballfield
+  - basketballcourt
+  - bridge
+  - chimney
+  - dam
+  - Expressway-service-area
+  - Expressway-toll-station
+  - golffield
+  - groundtrackfield
+  - harbor
+  - overpass
+  - ship
+  - stadium
+  - storagetank
+  - tenniscourt
+  - trainstation
+  - vehicle
+  - windmill

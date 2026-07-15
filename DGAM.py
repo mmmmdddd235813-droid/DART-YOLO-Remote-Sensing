@@ -1,12 +1,21 @@
-###################### ContextAggregation  ####     START   by  AI&CV  ###############################
-
-from mmcv.cnn import ConvModule
-from mmengine.model import caffe2_xavier_init, constant_init
-
-from ultralytics.nn.modules.conv import Conv
+"""Dynamic Global Attention Module for DART-YOLO."""
 
 import torch
 import torch.nn as nn
+
+try:
+    from mmengine.model import caffe2_xavier_init, constant_init
+except ModuleNotFoundError:
+    def caffe2_xavier_init(module):
+        nn.init.xavier_uniform_(module.weight)
+        if getattr(module, "bias", None) is not None:
+            nn.init.constant_(module.bias, 0)
+
+    def constant_init(module, val, bias=0):
+        nn.init.constant_(module.weight, val)
+        if getattr(module, "bias", None) is not None:
+            nn.init.constant_(module.bias, bias)
+from ultralytics.nn.modules.conv import Conv
 
 __all__ = ['DGAM']
 class ConvBNAct(nn.Module):

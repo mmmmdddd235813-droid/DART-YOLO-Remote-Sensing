@@ -1,0 +1,19 @@
+# VisDrone2019 detection dataset.
+# Official train and val splits are used. test-dev and test-challenge are not
+# used for training, validation, or hyperparameter tuning.
+path: ../datasets/VisDrone2019
+train: images/train
+val: images/val
+test: images/val
+nc: 10
+names:
+  - pedestrian
+  - people
+  - bicycle
+  - car
+  - van
+  - truck
+  - tricycle
+  - awning-tricycle
+  - bus
+  - motorcycle
