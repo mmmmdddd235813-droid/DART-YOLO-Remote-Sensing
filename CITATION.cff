@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "DART-YOLO: Parameter-Efficient and Accuracy-Oriented Detection for Remote Sensing Targets"
+title: "Rotation-Adaptive Multi-Scale Attention for Efficient Small-Object Detection in Remote-Sensing Imagery"
 message: "If you use this repository, please cite the manuscript after publication."
 type: software
 authors:

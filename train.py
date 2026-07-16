@@ -19,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch", type=int, default=8, help="Batch size.")
     parser.add_argument("--optimizer", default="SGD", help="Optimizer name.")
     parser.add_argument("--seed", type=int, default=0, help="Random seed.")
-    parser.add_argument("--pretrained", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--pretrained", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--device", default="0", help="CUDA device id or 'cpu'.")
     parser.add_argument("--workers", type=int, default=0)
     parser.add_argument("--project", default="runs/train", help="Output project directory.")

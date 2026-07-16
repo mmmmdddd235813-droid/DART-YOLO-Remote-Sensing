@@ -1,4 +1,4 @@
-# DART-YOLO: Parameter-Efficient and Accuracy-Oriented Detection for Remote Sensing Targets
+# DART-YOLO: Rotation-Adaptive Multi-Scale Attention for Efficient Small-Object Detection in Remote-Sensing Imagery
 
 This repository contains the reference implementation for DART-YOLO, a parameter-efficient and accuracy-oriented YOLO-based detector for remote sensing object detection. The model is designed for small and densely distributed targets in aerial and remote sensing imagery.
 
@@ -84,8 +84,10 @@ UAV-Tank images are not redistributed in full because some source datasets have 
 Default training command:
 
 ```bash
-python train.py --model DART-YOLO.yaml --data data/uav_tank.yaml --imgsz 640 --epochs 200 --batch 8 --optimizer SGD --seed 0 --pretrained
+python train.py --model DART-YOLO.yaml --data data/uav_tank.yaml --imgsz 640 --epochs 200 --batch 8 --optimizer SGD --seed 0 --no-pretrained
 ```
+
+All principal detector comparisons reported in the manuscript were trained without COCO-pretrained weights.
 
 Examples for the three datasets are listed in [TRAINING.md](TRAINING.md).
 

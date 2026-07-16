@@ -18,12 +18,16 @@ The dataset is reconstructed from public source projects. The full original imag
 ### Source Records
 
 UAV-Tank is reconstructed from five public object-detection source projects. The
-full source manifest is maintained with the dataset reconstruction records rather
-than embedded in this code repository, because the original image archives are
-not redistributed here. Each source record contains the project name, URL, task
-type, license, original image count, and its use in the final UAV-Tank subset.
-All five source records are treated as `Object detection` sources in the
-manuscript protocol.
+original image archives are not redistributed in this repository. The table below
+lists the public source records used for reconstruction.
+
+| Source project | URL | Task type | License | Original image count | Role |
+| --- | --- | --- | --- | ---: | --- |
+| Tank Dataset, Onyx | https://universe.roboflow.com/onyx/tank-qgurh | Object detection | CC BY 4.0 | 1,279 | Tank-only source images and bounding boxes for seed samples. |
+| RussiantTankDroneImagesLowQuality Dataset, tank | https://universe.roboflow.com/tank-s4xwz/russianttankdroneimageslowquality | Object detection | CC BY 4.0 | 993 | Low-quality drone images of armored vehicles; tank-related labels were retained and standardized. |
+| military tank detection Dataset, Keshav Memorial Institute of Technology | https://universe.roboflow.com/keshav-memorial-institute-of-technology-lbgah/military-tank-detection-rwlhy | Object detection | CC BY 4.0 | 800 | Additional tank detection samples for appearance diversity. |
+| Aerial Tanks Dataset, Yamen | https://universe.roboflow.com/yamen-gm7rm/aerial-tanks | Object detection | CC BY 4.0 | 618 | Aerial tank samples for scale and viewpoint diversity. |
+| Tanks detection Dataset, tanks | https://universe.roboflow.com/tanks-r1anu/tanks-detection-d0ayl-eympz | Object detection | MIT | 2,586 | Multi-type tank source images used after class filtering and tank-label unification. |
 
 ### Reconstruction Process
 
@@ -36,7 +40,7 @@ manuscript protocol.
 7. Apply the fixed train/val lists in `splits/uav_tank/`.
 8. Use the final 3,763-image, single-class dataset for training and evaluation.
 
-No segmentation labels, masks, or mask-to-box conversion are used in the final UAV-Tank protocol.
+Only object-detection bounding boxes are used in the final UAV-Tank protocol.
 
 ## VisDrone2019
 
