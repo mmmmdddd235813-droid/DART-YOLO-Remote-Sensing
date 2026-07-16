@@ -59,7 +59,7 @@ DART-YOLO-Remote-Sensing/
 
 ## Installation
 
-Python 3.9, PyTorch 2.1.2 with CUDA 11.8, and Ultralytics 8.3.161 were used for the main experiments.
+Python 3.12.7, PyTorch 2.3.1 with CUDA 12.7, and Ultralytics 8.3.159 were used for the main experiments.
 
 ```bash
 git clone https://github.com/mmmmdddd235813-droid/DART-YOLO-Remote-Sensing.git
