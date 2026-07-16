@@ -18,16 +18,16 @@ The dataset is reconstructed from public source projects. The full original imag
 ### Source Records
 
 UAV-Tank is reconstructed from five public object-detection source projects. The
-original image archives are not redistributed in this repository. The table below
-lists the public source records used for reconstruction.
+original image archives are not redistributed in this repository. The source
+records below follow the manuscript source table.
 
-| Source project | URL | Task type | License | Original image count | Role |
-| --- | --- | --- | --- | ---: | --- |
-| Tank Dataset, Onyx | https://universe.roboflow.com/onyx/tank-qgurh | Object detection | CC BY 4.0 | 1,279 | Tank-only source images and bounding boxes for seed samples. |
-| RussiantTankDroneImagesLowQuality Dataset, tank | https://universe.roboflow.com/tank-s4xwz/russianttankdroneimageslowquality | Object detection | CC BY 4.0 | 993 | Low-quality drone images of armored vehicles; tank-related labels were retained and standardized. |
-| military tank detection Dataset, Keshav Memorial Institute of Technology | https://universe.roboflow.com/keshav-memorial-institute-of-technology-lbgah/military-tank-detection-rwlhy | Object detection | CC BY 4.0 | 800 | Additional tank detection samples for appearance diversity. |
-| Aerial Tanks Dataset, Yamen | https://universe.roboflow.com/yamen-gm7rm/aerial-tanks | Object detection | CC BY 4.0 | 618 | Aerial tank samples for scale and viewpoint diversity. |
-| Tanks detection Dataset, tanks | https://universe.roboflow.com/tanks-r1anu/tanks-detection-d0ayl-eympz | Object detection | MIT | 2,586 | Multi-type tank source images used after class filtering and tank-label unification. |
+| Source project | Task type | License | Source project images | Role in UAV-Tank construction |
+| --- | --- | --- | ---: | --- |
+| military asset | Object detection | CC BY 4.0 | 633 | Tank labels retained. |
+| FPV drone | Object detection | CC BY 4.0 | 296 | Tank samples retained and unified. |
+| tank_500_0828 | Object detection | CC BY 4.0 | 500 | Tank-specific detection source. |
+| tank test | Object detection | CC BY 4.0 | 582 | Tank detection annotations retained and unified. |
+| tank | Object detection | CC BY 4.0 | 6,667 | Tank labels retained and unified. |
 
 ### Reconstruction Process
 
